@@ -35,13 +35,12 @@ const products = [
   }
   
   // Add item to cart
-  function addToCart(productId) {
-    
-    addToCartProducts=addToCartProducts.concat(products.filter((value)=>value.id == productId));
-    sessionStorage.setItem("cart-list",JSON.stringify(addToCartProducts))
-     renderCart();
-    
-    }
+ function addToCart(productId) {
+  const newProduct = products.filter((value) => value.id == productId);
+  sessionStorage.setItem("cart-list", JSON.stringify([...addToCartProducts, ...newProduct]));
+  addToCartProducts = addToCartProducts.concat(newProduct);
+  renderCart();
+}
   
   // Remove item from cart
   function removeFromCart(productId) {
